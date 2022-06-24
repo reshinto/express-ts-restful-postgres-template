@@ -1,0 +1,55 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": ["plugin:@typescript-eslint/recommended", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".ts"]
+      }
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "ignorePatterns": ["**/__tests__/**"],
+  "rules": {
+    "quotes": ["off"], // https://github.com/prettier/eslint-config-prettier#quotes
+    "no-unexpected-multiline": "off", // https://github.com/prettier/eslint-config-prettier#no-unexpected-multiline,
+    "arrow-parens": ["off"], // handled by prettier with rule 'arrowParens'
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-param-reassign": "off",
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/explicit-function-return-type": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "warn" // https://github.com/airbnb/javascript#modules--use-them
+      }
+    },
+    {
+      "files": ["*.js"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off", // duplicate of by no-unused-vars
+        "@typescript-eslint/explicit-function-return-type": "off" // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md#configuring-in-a-mixed-jsts-codebase
+      }
+    },
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "no-unused-vars": "off", // duplicate of @typescript-eslint/no-unused-vars
+        "@typescript-eslint/explicit-function-return-type": ["error"] // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md#configuring-in-a-mixed-jsts-codebase
+      }
+    }
+  ]
+}
